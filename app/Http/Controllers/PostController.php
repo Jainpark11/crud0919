@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use File;
 
 class PostController extends Controller
 {
@@ -95,6 +96,9 @@ class PostController extends Controller
             ]);
             $fileName = time() . '_' . $request->image->getClientOriginalName();
             $filePath = $request->image->storeAs('uploads', $fileName);
+
+            File::delete(public_path($post->image));  //이미지 파일 바꿨을 때 기존 이미지 파일 삭제
+
             $post->image = 'storage/' . $filePath;
         }
         $post->title = $request->title;
