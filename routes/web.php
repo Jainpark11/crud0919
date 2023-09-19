@@ -30,5 +30,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('posts', PostController::class);
+Route::get('/unavailable', function () {
+    return view('unavailable');
+})->name('unavailable');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
