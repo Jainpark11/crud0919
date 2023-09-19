@@ -10,7 +10,9 @@
         <div class="card">
             <div class="card-header">
                 all posts
-                <a class="btn btn-sm btn-success" href="{{ route('posts.index') }}">back</a>
+                <a class="btn btn-sm btn-success" href="{
+
+                    { route('posts.index') }}">back</a>
                 {{-- <a class="btn btn-sm btn-dark" href="#">삭제</a> --}}
             </div>
 

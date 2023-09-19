@@ -15,41 +15,33 @@
             </div>
 
             <div class="card-body">
-                <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <img src="{{ asset($post->image) }}" width="80">
-                        <label for="">사진</label>
-                        <input type="file" class="form-control" name="image">
-                    </div>
+                <table class="table table-striped table-bordered border-dark">
+                    <tbody>
 
-                    <div class="form-group">
-                        <label for="">제목</label>
-                        <input type="text" class="form-control" value="{{ $post->title }}" name="title">
-                    </div>
+                        <tr>
+                            <td>Id</td>
+                            <td>{{$post->id}}</td>
+                        </tr>
+                        <tr>
+                            <td>이미지</td>
+                            <td><img src="{{asset($post->image)}}" width="300"></td>
+                        </tr>
 
-                    <div class="form-group">
-                        <label for="">카테고리</label>
-                        <select name="category_id" id="" class="form-control">
-                            <option value="">선택하세요</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ $category->id == $post->category_id ? 'selected' : '' }}>{{ $category->name }}
-                                </option>
-                            @endforeach
+                        <tr>
+                            <td>설명</td>
+                            <td>{{$post->description}}</td>
+                        </tr>
+                        <tr>
+                            <td>카테고리Id</td>
+                            <td>{{$post->category_id}}</td>
+                        </tr>
+                        <tr>
+                            <td>발행일</td>
+                            <td>{{date('Y-m-d', strtotime($post->created_at))}}</td>
+                        </tr>
 
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">설명</label>
-                        <textarea id="" cols="30" rows="10" class="form-control" value="" name="description">{{ $post->description }}</textarea>
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <button class="btn btn-primary">제출</button>
-                    </div>
+                    </tbody>
+                </table>
                 </form>
             </div>
         </div>
