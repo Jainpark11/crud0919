@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,10 +38,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
+Route::get('/testing/create', function () {
+    return view('testing.create');
+})->middleware('levelCheck')->name('tcc');
+Route::get('/testing', function () {
+    return view('testing.index');
+});
+Route::get('/index2', function () {
+    return view('testing.index2');
+});
 //Route::resource('posts', PostController::class)->middleware('authCheck2');
-Route::resource('posts', PostController::class)->middleware('authCheck2');
+Route::resource('posts', PostController::class);
 Route::get('/unavailable', function () {
     return view('unavailable');
 })->name('unavailable');

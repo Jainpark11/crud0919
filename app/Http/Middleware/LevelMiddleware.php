@@ -2,11 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Manager;
 use Closure;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthCheck
+class LevelMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +18,15 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->has('auth') && $request->auth == 1) {
+        if ($id = Auth::user()?->id) {
+            $test1 = Auth::user();
+            $test2 = User::findOrFail(Auth::user()->id);
+            $test3 = Manager::findOrFail(Auth::user()->id);
+
+        if (($test2->level == '1')) {
             return $next($request);
         }
-
+    }
         return redirect()->route('unavailable');
     }
 }

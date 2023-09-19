@@ -5,3 +5,4 @@ npm run dev
 
 
 php artisan make:middleware TestMiddleware
+php artisan make:middleware LevelMiddleware
