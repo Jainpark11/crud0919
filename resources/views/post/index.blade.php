@@ -8,7 +8,9 @@
             <div class="card">
                 <div class="card-header">
                     all posts
+                    @if(($user->level)>2)
                     <a class="btn btn-sm btn-success" href="{{ route('posts.create') }}">생성</a>
+                    @endif
                     <a class="btn btn-sm btn-dark" href="#">삭제</a>
                 </div>
 

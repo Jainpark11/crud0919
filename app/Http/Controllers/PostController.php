@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use File;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use File;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,8 +18,9 @@ class PostController extends Controller
     {
         //$posts = Post::all();
        $posts = Post::paginate(3);
+       $user=User::findOrFail(Auth::user()->id);
 
-       return view('post.index', compact('posts'));
+       return view('post.index', compact('posts','user'));
         // return view('post.index', compact('posts'));
         // return 'sdsf';
     }
