@@ -16,6 +16,7 @@ class PostController extends Controller
     {
         //$posts = Post::all();
        $posts = Post::paginate(3);
+
        return view('post.index', compact('posts'));
         // return view('post.index', compact('posts'));
         // return 'sdsf';
@@ -109,6 +110,7 @@ class PostController extends Controller
 
 
         $post->save();
+        //dd($request);
 
         return redirect()->route('posts.index');
     }

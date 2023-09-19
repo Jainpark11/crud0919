@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckCountry
+class AuthCheck
 {
     /**
      * Handle an incoming request.
@@ -15,14 +15,9 @@ class CheckCountry
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $country = [
-            'en',
-            'ko',
-            'jp'
-        ];
-        if (!in_array($request->country, $country)&& !request()->is('unavailable')) {
-            return redirect()->route('unavailable');
+        if ($request->has('auth') && $request->auth == 1) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('unavailable');
     }
 }
