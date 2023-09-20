@@ -17,8 +17,11 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post::all();
+        // $posts = Post::with('category')->paginate(3);
+
        $posts = Post::paginate(3);
        $user=User::findOrFail(Auth::user()->id);
+
 
        return view('post.index', compact('posts','user'));
         // return view('post.index', compact('posts'));
@@ -30,7 +33,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create_post');
+       // $this->authorize('create_post');
+       $this->authorize('create', Post::class);
         $categories = Category::all();
         return view('post.create', compact('categories'));
     }

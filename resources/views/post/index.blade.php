@@ -8,10 +8,11 @@
             <div class="card">
                 <div class="card-header">
                     all posts
-                    @if(($user->level)>2)
-                    <a class="btn btn-sm btn-success" href="{{ route('posts.create') }}">생성</a>
-                    @endif
-                    <a class="btn btn-sm btn-dark" href="#">삭제</a>
+                    @can('create', \App\Models\Post::class)
+                        <a class="btn btn-sm btn-success" href="{{ route('posts.create') }}">생성</a>
+                        <a class="btn btn-sm btn-dark" href="#">삭제</a>
+                    @endcan
+
                 </div>
 
                 <div class="card-body">
@@ -43,7 +44,7 @@
                                             href="{{ route('posts.show', $post->id) }}">show</a>
                                         <a class="btn btn-sm btn-primary"
                                             href="{{ route('posts.edit', $post->id) }}">수정</a>
-                                        <form action="{{route('posts.destroy', $post->id)}}" method="POST">
+                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn-sm btn-danger btn">삭제</button>
@@ -55,7 +56,7 @@
 
                         </tbody>
                     </table>
-                    {{$posts->links()}}
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>

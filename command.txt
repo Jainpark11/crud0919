@@ -6,3 +6,10 @@ npm run dev
 
 php artisan make:middleware TestMiddleware
 php artisan make:middleware LevelMiddleware
+
+
+php artisan make:migration add_users_table --table=users
+
+php artisan make:policy PostPolicy --model=Post
+
+php artisan make:model Role -m
