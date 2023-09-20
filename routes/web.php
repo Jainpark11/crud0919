@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/testing/create', function () {
     return view('testing.create');
-})->middleware('levelCheck')->name('tcc');
+})->middleware('levelCheck');
 Route::get('/testing', function () {
     return view('testing.index');
 });
@@ -49,6 +49,7 @@ Route::get('/index2', function () {
 });
 //Route::resource('posts', PostController::class)->middleware('authCheck2');
 Route::resource('posts', PostController::class);
+
 Route::get('/unavailable', function () {
     return view('unavailable');
 })->name('unavailable');

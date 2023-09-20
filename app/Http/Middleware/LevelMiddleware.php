@@ -18,15 +18,14 @@ class LevelMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($id = Auth::user()?->id) {
-            $test1 = Auth::user();
-            $test2 = User::findOrFail(Auth::user()->id);
-            $test3 = Manager::findOrFail(Auth::user()->id);
-
-        if (($test2->level == '1')) {
+        $userLevel = Auth::user()?->level;
+        if ($request->has('auth') && $request->auth == 1) {
+            $users = Auth::user()?->id;
+            dd($users);
+            return $next($request);
+        } else if ($userLevel == 3) {
             return $next($request);
         }
-    }
-        return redirect()->route('unavailable');
+        return redirect()->route('login');
     }
 }

@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class TestingController extends Controller
 {
-
+    // public function __construct()
+    // {
+    //     $this->middleware('levelCheck');
+    // }
     public function index()
     {
 
