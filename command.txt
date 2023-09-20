@@ -9,6 +9,7 @@ php artisan make:middleware LevelMiddleware
 
 
 php artisan make:migration add_users_table --table=users
+php artisan make:migration drop_column_to_users_table --table=users
 
 php artisan make:policy PostPolicy --model=Post
 

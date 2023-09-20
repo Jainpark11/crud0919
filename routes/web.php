@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\FindJobController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestingController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(["middleware"=>"authCheck2"], function(){
+Route::group(["middleware" => "authCheck2"], function () {
     Route::get('/pro', function () {
         return view('post.pro');
     });
@@ -49,9 +51,14 @@ Route::get('/index2', function () {
 });
 //Route::resource('posts', PostController::class)->middleware('authCheck2');
 Route::resource('posts', PostController::class);
+Route::resource('findjob',FindJobController::class);
 
 Route::get('/unavailable', function () {
     return view('unavailable');
 })->name('unavailable');
 
 require __DIR__ . '/auth.php';
+
+Route::get('user-data', function () {
+    return Auth::user()->name;
+});
