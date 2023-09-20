@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <span>업체회원 가입</span>
     <form method="POST" action="{{ route('register') }}">
         @csrf
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
