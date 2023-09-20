@@ -14,3 +14,5 @@ php artisan make:migration drop_column_to_users_table --table=users
 php artisan make:policy PostPolicy --model=Post
 
 php artisan make:model Role -m
+
+composer require barryvdh/laravel-debugbar --dev

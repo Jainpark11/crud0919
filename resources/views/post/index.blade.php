@@ -8,10 +8,13 @@
             <div class="card">
                 <div class="card-header">
                     all posts
-                    @can('create', \App\Models\Post::class)
+                    {{-- @can('create', \App\Models\Post::class)
                         <a class="btn btn-sm btn-success" href="{{ route('posts.create') }}">생성</a>
                         <a class="btn btn-sm btn-dark" href="#">삭제</a>
-                    @endcan
+                        @elsecan('viewAny', \App\Models\Post::class)
+                    @endcan --}}
+                    <a class="btn btn-sm btn-success" href="{{ route('posts.create') }}">생성</a>
+                    <a class="btn btn-sm btn-dark" href="#">삭제</a>
 
                 </div>
 

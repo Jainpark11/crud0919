@@ -19,11 +19,17 @@ class PostController extends Controller
         //$posts = Post::all();
         // $posts = Post::with('category')->paginate(3);
 
-       $posts = Post::paginate(3);
-       $user=User::findOrFail(Auth::user()->id);
+        $posts = Post::paginate(3);
+        if(Auth::user()?->id){
+            $user=User::findOrFail(Auth::user()->id);
+            return view('post.index', compact('posts','user'));
+        }else{
+            return view('post.index', compact('posts'));
+        }
 
 
-       return view('post.index', compact('posts','user'));
+        //    return view('post.index', compact('posts','user'));
+
         // return view('post.index', compact('posts'));
         // return 'sdsf';
     }
@@ -33,8 +39,8 @@ class PostController extends Controller
      */
     public function create()
     {
-       // $this->authorize('create_post');
-       $this->authorize('create', Post::class);
+        // $this->authorize('create_post');
+        // $this->authorize('create', Post::class);
         $categories = Category::all();
         return view('post.create', compact('categories'));
     }
